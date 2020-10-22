@@ -33,6 +33,6 @@ ehthumbs.db
 Thumbs.db
 
 .qmake.stash
-quasselconf2text
+qsettings2json
 Makefile
 *.conf

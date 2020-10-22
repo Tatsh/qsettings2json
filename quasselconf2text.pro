@@ -1,7 +1,7 @@
 DEFINES += QT_NO_CAST_FROM_ASCII
 INCLUDEPATH += .
 SOURCES += main.cpp
-TARGET = quasselconf2text
+TARGET = qsettings2json
 TEMPLATE = app
 CONFIG += console
 QT -= gui
