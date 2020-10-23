@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Configure
         run: qmake
-      - name: Compile (other OS)
+      - name: Compile
         run: make
   build-win:
     runs-on: windows-latest
