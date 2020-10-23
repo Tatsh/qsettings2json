@@ -1,23 +1,37 @@
-#include <QtCore>
+#include <QtCore/QtCore>
 
+/**
+ * @param settings QSettings instance.
+ * @param obj      JSON object to write to.
+ * @param err      Error stream.
+ * @returns Non-zero if an error ocurred.
+ */
 int convertToObject(QSettings &settings, QJsonObject &obj, QTextStream &err) {
     for (const QString key : settings.childKeys()) {
         if (!key.size()) {
-            // Invalid document
+            // Assume invalid file
             return 1;
         }
         QVariant value = settings.value(key);
-        QString typeName = QLatin1String(QByteArray(value.typeName()));
-        if (typeName == QStringLiteral("QString")) {
+        switch (value.type()) {
+        case QMetaType::QString:
             obj[key] = QJsonValue(value.toString());
-        } else if (typeName == QStringLiteral("QVariantMap") ||
-                   typeName == QStringLiteral("QVariantList")) {
+            break;
+
+        case QMetaType::QVariantMap:
+        case QMetaType::QVariantList:
             obj[key] = value.toJsonValue();
-        } else if (typeName == QStringLiteral("QStringList")) {
+            break;
+
+        case QMetaType::QStringList:
             obj[key] =
                 QJsonValue(QJsonArray::fromStringList(value.toStringList()));
-        } else {
-            err << "Unhandled type: " << typeName << QStringLiteral("\n");
+            break;
+
+        default:
+            err << "Unhandled type: " << value.typeName()
+                << QStringLiteral("\n");
+            break;
         }
     }
 
@@ -27,6 +41,7 @@ int convertToObject(QSettings &settings, QJsonObject &obj, QTextStream &err) {
         QJsonObject groupObj;
         ret = convertToObject(settings, groupObj, err);
         if (ret != 0) {
+            // Assume invalid file
             return ret;
         }
         obj[group] = QJsonValue(groupObj);
@@ -36,10 +51,6 @@ int convertToObject(QSettings &settings, QJsonObject &obj, QTextStream &err) {
     return ret;
 }
 
-/**
- * It just so happens QSettings can read the Quassel IRC server configuration
- * file, even though Quassel uses its own Settings class.
- */
 int main(__attribute__((unused)) int argc, char *argv[]) {
     QJsonObject obj;
     QString arg = QString::fromUtf8(argv[1]);
