@@ -19,6 +19,7 @@
     "macprefs",
     "noto",
     "portfile",
+    "programfiles",
     "qmake",
     "qsettings",
     "quassel",
@@ -27,6 +28,7 @@
     "submodules",
     "swiftformat",
     "udvare",
-    "uninstallation"
+    "uninstallation",
+    "vcvars"
   ]
 }
