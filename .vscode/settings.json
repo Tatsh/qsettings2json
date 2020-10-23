@@ -17,6 +17,7 @@
     "linebreak",
     "macos",
     "macprefs",
+    "msvc",
     "nmake",
     "noto",
     "portfile",
