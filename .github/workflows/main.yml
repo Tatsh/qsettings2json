@@ -16,7 +16,7 @@ jobs:
         uses: jurplel/install-qt-action@v2.9.0
       - name: "Windows: install Pscx"
         if: runner.os == 'Windows'
-        run: Install-Module Pscx -Scope CurrentUser
+        run: Install-Module -Name Pscx -Force
       - name: "Windows: source vcvars"
         if: runner.os == 'Windows'
         run: Invoke-BatchFile "%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
