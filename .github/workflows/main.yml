@@ -23,7 +23,7 @@ jobs:
         if: runner.os == 'macOS'
         uses: actions/upload-artifact@v2
         with:
-          name: qsettings2json-app
+          name: qsettings2json-macos
           path: qsettings2json.app
   build-win:
     runs-on: windows-latest
