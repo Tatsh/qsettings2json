@@ -1,5 +1,11 @@
 #include <QtCore/QtCore>
 
+#ifdef WIN32
+#define UNUSED
+#else
+#define UNUSED __attribute__((unused))
+#endif
+
 /**
  * @param settings QSettings instance.
  * @param obj      JSON object to write to.
@@ -51,7 +57,7 @@ int convertToObject(QSettings &settings, QJsonObject &obj, QTextStream &err) {
     return ret;
 }
 
-int main(__attribute__((unused)) int argc, char *argv[]) {
+int main(UNUSED int argc, char *argv[]) {
     QJsonObject obj;
     QString arg = QString::fromUtf8(argv[1]);
     QTextStream out(stdout);
