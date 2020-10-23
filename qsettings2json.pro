@@ -5,3 +5,7 @@ TARGET = qsettings2json
 TEMPLATE = app
 CONFIG += console
 QT -= gui
+
+win32-msvc* {
+  QMAKE_CXX_FLAGS += /std:c++17
+}
