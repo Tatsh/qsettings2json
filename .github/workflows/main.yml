@@ -14,11 +14,18 @@ jobs:
     steps:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.9.0
-      - name: Windows-specific
+      - name: "Windows: install Pscx"
         if: runner.os == 'Windows'
-        run: call "%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+        run: Install-Module Pscx -Scope CurrentUser
+      - name: "Windows: source vcvars"
+        if: runner.os == 'Windows'
+        run: Invoke-BatchFile "%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       - uses: actions/checkout@v2
       - name: Configure
         run: qmake
       - name: Compile
+        if: runner.os != 'Windows'
         run: make
+      - name: Compile
+        if: runner.os == 'Windows'
+        run: nmake
