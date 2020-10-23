@@ -1,0 +1,13 @@
+{
+  "configurations": [
+    {
+      "cStandard": "gnu17",
+      "compilerPath": "/usr/bin/gcc",
+      "cppStandard": "gnu++20",
+      "defines": [],
+      "includePath": ["${workspaceFolder}/**", "/usr/include/qt5"],
+      "name": "Linux"
+    }
+  ],
+  "version": 4
+}
