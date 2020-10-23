@@ -1,10 +1,12 @@
 # qsettings2json
 
-Convert QSettings-generated files to JSON. Compatible with quasselcore.conf and many others.
+![CI](https://github.com/Tatsh/qsettings2json/workflows/CI/badge.svg)
+
+Convert QSettings-generated files to JSON. Compatible with `quasselcore.conf` and many others.
 
 ## Build
 
-```
+```shell
 git clone ...
 cd qsettings2json
 qmake
@@ -13,7 +15,7 @@ make
 
 ## Usage
 
-```
+```shell
 qsettings2json FILE
 ```
 
