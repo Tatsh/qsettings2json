@@ -28,6 +28,11 @@ int convertToObject(QSettings &settings, QJsonObject &obj, QTextStream &err) {
                 QJsonValue(QJsonArray::fromStringList(value.toStringList()));
             break;
 
+        case QMetaType::QByteArray:
+            obj[key] =
+                QJsonValue(QString::fromUtf8(value.toByteArray().toBase64()));
+            break;
+
         default:
             err << "Unhandled type: " << value.typeName()
                 << QStringLiteral("\n");
