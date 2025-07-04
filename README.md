@@ -1,5 +1,12 @@
 # qsettings2json
 
+## Deprecated
+
+Please use `kconfig-to-json` from [Deltona](https://github.com/Tatsh/deltona)
+([PyPI](https://pypi.org/project/deltona/)).
+
+## Original text
+
 ![CI](https://github.com/Tatsh/qsettings2json/workflows/CI/badge.svg)
 
 Convert QSettings-generated files to JSON. Compatible with `quasselcore.conf` and many others.
